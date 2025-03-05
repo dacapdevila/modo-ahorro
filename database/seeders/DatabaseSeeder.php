@@ -2,6 +2,11 @@
 
 namespace Database\Seeders;
 
+use App\Models\Account;
+use App\Models\Budget;
+use App\Models\Category;
+use App\Models\SavingGoal;
+use App\Models\Transaction;
 use App\Models\User;
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
@@ -13,11 +18,19 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        // User::factory(10)->create();
+        // Create Categories
+        Category::factory()->count(10)->create();
 
-        User::factory()->create([
-            'name' => 'Test User',
-            'email' => 'test@example.com',
-        ]);
+        // Create Accounts
+        Account::factory()->count(10)->create();
+
+        // Create Transactions
+        Transaction::factory()->count(50)->create();
+
+        // Create Budgets
+        Budget::factory()->count(10)->create();
+
+        // Create Saving Goals
+        SavingGoal::factory()->count(5)->create();
     }
 }
