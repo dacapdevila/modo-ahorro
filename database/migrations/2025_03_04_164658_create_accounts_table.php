@@ -17,7 +17,7 @@ return new class extends Migration
         Schema::create('accounts', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->enum('type', ['savings', 'checking', 'investment']);
+            $table->decimal('initial_balance', 15, 2)->default(0);
             $table->decimal('balance', 15, 2)->default(0);
             $table->string('currency', 3);
             $table->timestamps();

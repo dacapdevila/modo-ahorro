@@ -19,9 +19,9 @@ class Account extends Model
      */
     protected $fillable = [
         'name',
-        'type',
         'balance',
         'currency',
+        'initial_balance',
     ];
 
     public function transactions(): HasMany
