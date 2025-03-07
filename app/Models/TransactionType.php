@@ -2,14 +2,14 @@
 
 namespace App\Models;
 
-use Database\Factories\AccountFactory;
+use Database\Factories\TransactionTypeFactory;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 
-class Account extends Model
+class TransactionType extends Model
 {
-    /** @use HasFactory<AccountFactory> */
+    /** @use HasFactory<TransactionTypeFactory> */
     use HasFactory;
 
     /**
@@ -19,9 +19,6 @@ class Account extends Model
      */
     protected $fillable = [
         'name',
-        'balance',
-        'currency',
-        'initial_balance',
     ];
 
     public function transactions(): HasMany

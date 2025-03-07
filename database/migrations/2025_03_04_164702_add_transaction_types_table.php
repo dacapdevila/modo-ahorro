@@ -11,15 +11,17 @@ return new class extends Migration
      */
     public function up(): void
     {
-        if (Schema::hasTable('accounts')) {
+        if (Schema::hasTable('transaction_types')) {
             return;
         }
-        Schema::create('accounts', function (Blueprint $table) {
+        Schema::create('transaction_types', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
-            $table->decimal('initial_balance', 15, 2)->default(0);
-            $table->decimal('balance', 15, 2)->default(0);
-            $table->string('currency', 3);
+            $table->enum('name', [
+                'Fixed Income',
+                'Variable Income',
+                'Fixed Expense',
+                'Variable Expense',
+            ]);
             $table->timestamps();
         });
     }
@@ -29,9 +31,9 @@ return new class extends Migration
      */
     public function down(): void
     {
-        if (!Schema::hasTable('accounts')) {
+        if (!Schema::hasTable('transaction_types')) {
             return;
         }
-        Schema::dropIfExists('accounts');
+        Schema::dropIfExists('transaction_types');
     }
 };

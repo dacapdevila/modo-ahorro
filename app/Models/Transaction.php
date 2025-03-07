@@ -21,7 +21,6 @@ class Transaction extends Model
         'account_id',
         'category_id',
         'amount',
-        'type',
         'description',
         'transaction_date'
     ];
@@ -34,5 +33,10 @@ class Transaction extends Model
     public function category(): BelongsTo
     {
         return $this->belongsTo(Category::class);
+    }
+
+    public function transactionType(): BelongsTo
+    {
+        return $this->belongsTo(TransactionType::class);
     }
 }

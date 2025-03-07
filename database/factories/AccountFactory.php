@@ -16,11 +16,44 @@ class AccountFactory extends Factory
      */
     public function definition(): array
     {
+        static $usedNames = [];
+
+        $accountNames = [
+            'Banco Fortuna',
+            'Ahorro Seguro',
+            'FinanTech Solutions',
+            'Cuenta Libre',
+            'Crédito Plus',
+            'CashFlow Bank',
+            'Inversión Dinámica',
+            'Pagos Express',
+            'Billetera Digital One',
+            'Segura Capital',
+        ];
+
+        // Filter unused names
+        $availableNames = array_diff($accountNames, $usedNames);
+
+        // If all names were used, restart the list
+        if (empty($availableNames)) {
+            $usedNames = [];
+            $availableNames = $accountNames;
+        }
+
+        // Select a random name and mark it as used
+        $name = $this->faker->randomElement($availableNames);
+        $usedNames[] = $name;
+
+        $currencyNames = [
+            'ARS',
+            'USD',
+        ];
+
         return [
-            'name' => $this->faker->word . ' Account',
-            'type' => $this->faker->randomElement(['savings', 'checking', 'investment']),
+            'name' => $name,
+            'initial_balance' => $this->faker->randomFloat(2, 100, 50000),
             'balance' => $this->faker->randomFloat(2, 100, 50000),
-            'currency' => $this->faker->currencyCode,
+            'currency' => $this->faker->randomElement($currencyNames),
         ];
     }
 }

@@ -18,7 +18,7 @@ class BudgetFactory extends Factory
     public function definition(): array
     {
         return [
-            'category_id' => Category::factory(),
+            'category_id' => Category::query()->inRandomOrder()->first()->id,
             'amount' => $this->faker->randomFloat(2, 100, 5000),
             'month' => $this->faker->numberBetween(1, 12),
             'year' => $this->faker->year,
